@@ -1,19 +1,52 @@
 .menu {
-   @include flex-container($flex-direction: row);
+   @include flex-container($flex-direction: row, $justify-content: flex-end);
+   position: absolute;
    z-index: 10;
    width: 100%;
    flex-wrap: wrap;
-   background-color: rgba(77, 103, 16, 0.7);
-   border-bottom: 5px solid darken(rgba(107, 128, 56, 0.7), 10%);
+
+   .gallery {
+      pointer-events: none;
+   }
+
    @include media-query(xlarge) {
-      position: absolute;
       background-color: rgba(0, 0, 0, 0);
       border-bottom: none;
       justify-content: space-between;
    }
+
+   &__button {
+      position: absolute;
+      right: 0.5rem;
+      top: 6rem;
+      align-self: flex-end;
+      height: 2rem;
+      width: 4rem;
+      margin: 20px;
+      font-family: Mine, Georgia, "Times New Roman", Times, serif;
+      color: darkred;
+      background-color: #829457;
+      border: 2px solid;
+      border-color: darkred;
+      cursor: pointer;
+      outline: none;
+      @include media-query(xsmall) {
+         top: 0.8rem;
+      }
+      &:hover {
+         color: firebrick;
+      }
+   }
+
    &__wrapper {
       display: flex;
       align-items: center;
+      justify-content: center;
+      width: 100%;
+      background-color: #829457;
+      @include media-query(xsmall) {
+         justify-content: flex-start;
+      }
    }
    &__link {
       @include flex-container($flex-direction: row);
@@ -40,14 +73,15 @@
    }
    &__wrapper--links {
       width: 100%;
+      display: flex;
       justify-content: center;
-      background-color: darken(rgba(107, 128, 56, 0.7), 10%);
-      @include media-query(xlarge) {
-         background-color: rgba(0, 0, 0, 0);
-         width: auto;
-      }
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: darken(#829457, 10%);
 
       .menu__links {
+         height: 0;
+         visibility: hidden;
          font-family: MineBold, Georgia, "Times New Roman", Times, serif;
          font-size: 1.1rem;
          list-style-type: none;
@@ -56,24 +90,11 @@
          flex-direction: column;
          flex-wrap: wrap;
 
-         li:nth-child(3) {
-            margin-right: 0;
-         }
-
-         li:nth-child(4) {
-            margin-right: 0;
-         }
-
          li {
             padding: 5px;
-            margin: 15px;
+            margin: 5px;
             margin-right: 10px;
-            @include media-query(xlarge) {
-               margin: 0 7px;
-            }
-            @include media-query(xxlarge) {
-               margin: 0 15px;
-            }
+
             .menu__arrow-wrapper:hover {
                text-decoration: none;
             }
@@ -86,7 +107,7 @@
                }
             }
          }
-         @include media-query(xxsmall) {
+         @include media-query(xsmall) {
             font-size: 1.2rem;
             flex-direction: row;
             justify-content: center;
@@ -106,15 +127,17 @@
             font-size: 2rem;
          }
       }
+      .menu__links--open {
+         height: auto;
+         visibility: visible;
+      }
    }
    &__brand {
       height: 6rem;
       width: 6rem;
       padding: 5px;
-      margin-left: 5px;
-      @include media-query(xlarge) {
-         margin-left: 15px;
-      }
+      margin-left: 15px;
+
       .menu__image {
          width: 100%;
          height: 100%;
@@ -141,32 +164,6 @@
       .menu__arrow--show {
          color: firebrick;
          opacity: 1;
-      }
-   }
-}
-
-.menu-next {
-   @include flex-container($flex-direction: row, $justify-content: space-around);
-   z-index: 10;
-   width: 100%;
-   flex-wrap: wrap;
-   background-color: rgba(77, 103, 16, 0.7);
-
-   .menu__links--next {
-      flex-direction: row;
-      justify-content: center;
-   }
-
-   .menu__links--second {
-      font-size: 1rem;
-      @include media-query(xxsmall) {
-         font-size: 1.2rem;
-      }
-      @include media-query(xxlarge) {
-         font-size: 1.5rem;
-      }
-      @include media-query(hd) {
-         font-size: 2rem;
       }
    }
 }
