@@ -815,6 +815,10 @@ p {
   display: block;
 }
 
+.article__text--next .article__list-no-number {
+  list-style-type: none;
+}
+
 .article__text--second {
   margin-bottom: 0;
 }
